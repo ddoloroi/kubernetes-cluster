@@ -1,2 +1,5 @@
 - name: Installing etcd
   yum: name=etcd state=installed
+
+- name: Enabling etcd
+  service: name=etcd enabled=yes

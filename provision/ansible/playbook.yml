@@ -12,3 +12,10 @@
   hosts: master
   roles:
     - etcd
+    - kubernetes-master
+
+- name: Kubernetes Slave
+  become: yes
+  hosts: slave
+  roles:
+    - kubernetes-slave

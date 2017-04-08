@@ -1,0 +1,23 @@
+---
+
+- name: Installing kubernetes-master
+  yum: name={{ item }} state=installed
+  with_items:
+    - kubernetes-client
+    - kubernetes-master
+
+- name: Applying permissions to certificates and private key for API Server 
+  file: path={{ item }} user=kube group=kube
+  with_items:
+    - /var/run/kubernetes/apiserver.crt
+    - /var/run/kubernetes/apiserver.key
+
+- name: Enabling Kubernetes API Server
+  service: name=kube-apiserver enabled=yes
+
+- name: Enabling Kubernetes Scheduler
+  service: name=kube-scheduler enabled=yes
+
+- name: Enabling Kubernetes Controller Manager
+  service: name=kube-controller-manager enabled=yes
+

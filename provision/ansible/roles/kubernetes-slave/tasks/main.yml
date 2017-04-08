@@ -1,0 +1,15 @@
+---
+
+- name: Installing Kubernetes Node
+  yum: name={{ item }} state=installed
+  with_items:
+    - kubernetes-node
+
+# TODO: configure kubelet config
+
+- name: Enabling Kubernetes Node
+  service: name=kubelet enabled=yes
+
+- name: Enabling Kubernetes Proxy
+  service: name=kube-proxy enabled=yes
+
