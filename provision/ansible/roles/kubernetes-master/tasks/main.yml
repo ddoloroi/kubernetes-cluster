@@ -12,12 +12,24 @@
     - /var/run/kubernetes/apiserver.crt
     - /var/run/kubernetes/apiserver.key
 
+- name: Copying /etc/kubernetes/apiserver
+  template: src=templates/etc/kubernetes/apiserver.j2 dest=/etc/kubernetes/apiserver
+
 - name: Enabling Kubernetes API Server
   service: name=kube-apiserver enabled=yes
+
+- name: Starting Kubernetes API Server
+  service: name=kube-apiserver state=started
 
 - name: Enabling Kubernetes Scheduler
   service: name=kube-scheduler enabled=yes
 
+- name: Starting Kubernetes Scheduler Server
+  service: name=kube-scheduler state=started
+
 - name: Enabling Kubernetes Controller Manager
   service: name=kube-controller-manager enabled=yes
+
+- name: Starting Kubernetes Controller Manager
+  service: name=kube-controller-manager state=started
 
