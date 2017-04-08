@@ -11,9 +11,11 @@ Educational project about building Kubernetes Cluster from scratch.
 
 ### Quick start
 
-Run `vagrant up` to launch VMs cluster based on VirtualBox
+1. Specify your CPUs, RAM and role parameters in config.yml configuration file.
 
-Done.
+2. Run `vagrant up` to launch VMs cluster based on VirtualBox.
+
+Keep in mind, that it takes from 5 to 15 minutes.
 
 ### License
 
