@@ -1,0 +1,9 @@
+kube_hosts:
+  master0:
+    ip: 172.17.0.10
+  slave0:
+    ip: 172.17.0.11
+  slave1:
+    ip: 172.17.0.12
+  slave2:
+    ip: 172.17.0.13

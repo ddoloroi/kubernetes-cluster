@@ -4,4 +4,5 @@
   become: yes
   hosts: all
   roles:
+    - common
     - docker

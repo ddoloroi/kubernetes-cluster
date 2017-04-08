@@ -1,2 +1,3 @@
 .vagrant
+playbook.retry
 .DS_Store
