@@ -6,7 +6,7 @@ Educational project about building Kubernetes Cluster from scratch.
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.1.0 or higher
 - [Vagrant](https://www.vagrantup.com/downloads.html) 1.9.0 or higher
-- [Vagrant VBGuest plug-in](https://github.com/dotless-de/vagrant-vbguest) or higher
+- [Vagrant VBGuest plug-in](https://github.com/dotless-de/vagrant-vbguest) 0.13.0 or higher
 - [Ansible](https://docs.ansible.com/ansible/intro_installation.html#installation) 2.0 or higher
 
 ## Quick start
