@@ -6,19 +6,22 @@
     - kubernetes-client
     - kubernetes-master
 
-- name: Applying permissions to certificates and private key for API Server 
+- name: Copying /etc/kubernetes/apiserver
+  template: src=templates/etc/kubernetes/apiserver.j2 dest=/etc/kubernetes/apiserver
+
+- name: Starting Kubernetes API Server
+  service: name=kube-apiserver state=started
+
+- name: Applying permissions to certificates and private key for API Server
   file: path={{ item }} owner=kube group=kube
   with_items:
     - /var/run/kubernetes/apiserver.crt
     - /var/run/kubernetes/apiserver.key
 
-- name: Copying /etc/kubernetes/apiserver
-  template: src=templates/etc/kubernetes/apiserver.j2 dest=/etc/kubernetes/apiserver
-
 - name: Enabling Kubernetes API Server
   service: name=kube-apiserver enabled=yes
 
-- name: Starting Kubernetes API Server
+- name: Restarting Kubernetes API Server (after permissions set)
   service: name=kube-apiserver state=started
 
 - name: Enabling Kubernetes Scheduler
@@ -32,4 +35,3 @@
 
 - name: Starting Kubernetes Controller Manager
   service: name=kube-controller-manager state=started
-
