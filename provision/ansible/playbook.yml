@@ -6,3 +6,9 @@
   roles:
     - common
     - docker
+
+- name: Kubernetes Master
+  become: yes
+  hosts: master
+  roles:
+    - etcd
