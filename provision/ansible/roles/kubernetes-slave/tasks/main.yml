@@ -5,11 +5,18 @@
   with_items:
     - kubernetes-node
 
-# TODO: configure kubelet config
+- name: Copying /etc/kubernetes/kubelet
+  template: src=templates/etc/kubernetes/kubelet.j2 dest=/etc/kubernetes/kubelet
 
 - name: Enabling Kubernetes Node
   service: name=kubelet enabled=yes
 
+- name: Starting Kubernetes Node
+  service: name=kubelet state=started
+
 - name: Enabling Kubernetes Proxy
   service: name=kube-proxy enabled=yes
+
+- name: Starting Kubernetes Proxy
+  service: name=kube-proxy state=started
 
