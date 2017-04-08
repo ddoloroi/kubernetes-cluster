@@ -1,0 +1,7 @@
+---
+
+- name: Everywhere
+  become: yes
+  hosts: all
+  roles:
+    - docker

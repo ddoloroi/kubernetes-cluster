@@ -1,0 +1,14 @@
+---
+
+- name: Installing dependencies
+  yum: name={{ item }} state=installed
+  with_items:
+    - yum-utils
+
+- name: Adding YUM repository
+  copy: src=files/etc/yum.repos.d/docker-ce.repo dest=/etc/yum.repos.d/docker-ce.repo
+
+- name: Installing Docker Engine CE
+  yum: name={{ item }} state=installed
+  with_items:
+    - docker-ce
