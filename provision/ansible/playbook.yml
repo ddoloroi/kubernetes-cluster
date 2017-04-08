@@ -1,16 +1,9 @@
 ---
 
-- name: Everywhere
-  become: yes
-  hosts: all
-  roles:
-    - common
-
 - name: Kubernetes Master
   become: yes
   hosts: master
   roles:
-    - etcd
     - kubernetes-master
 
 - name: Kubernetes Slave

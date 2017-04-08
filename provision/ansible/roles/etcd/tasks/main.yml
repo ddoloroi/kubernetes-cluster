@@ -3,3 +3,6 @@
 
 - name: Enabling etcd
   service: name=etcd enabled=yes
+
+- name: Starting etcd
+  service: name=etcd state=started
