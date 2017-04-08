@@ -1,2 +1,6 @@
 - name: Copying /etc/hosts
   template: src=templates/etc/hosts.j2 dest=/etc/hosts
+
+- name: Copying /etc/resolv.conf
+  file: src=files/etc/resolv.conf dest=/etc/resolv.conf
+
