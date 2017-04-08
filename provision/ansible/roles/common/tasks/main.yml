@@ -4,3 +4,8 @@
 - name: Copying /etc/resolv.conf
   file: src=files/etc/resolv.conf dest=/etc/resolv.conf
 
+- name: Stopping firewalld
+  service: name=firewalld state=stopped
+
+- name: Disabling firewalld
+  service: name=firewalld enabled=no
