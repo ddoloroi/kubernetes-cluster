@@ -1,6 +1,9 @@
 - name: Installing etcd
   yum: name=etcd state=installed
 
+- name: Copying /etc/etcd/etcd.conf
+  template: src=templates/etc/etcd/etcd.conf.j2 dest=/etc/etcd/etcd.conf
+
 - name: Enabling etcd
   service: name=etcd enabled=yes
 
