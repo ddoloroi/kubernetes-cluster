@@ -7,7 +7,7 @@
     - kubernetes-master
 
 - name: Applying permissions to certificates and private key for API Server 
-  file: path={{ item }} user=kube group=kube
+  file: path={{ item }} owner=kube group=kube
   with_items:
     - /var/run/kubernetes/apiserver.crt
     - /var/run/kubernetes/apiserver.key
