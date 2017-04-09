@@ -2,6 +2,8 @@
 
 Educational project about building Kubernetes cluster inside of VirtualBox VMs.
 
+[![Build Status](https://travis-ci.org/gongled/kubernetes-cluster.svg?branch=master)](https://travis-ci.org/gongled/kubernetes-cluster)
+
 ## Requirements
 
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) 5.1.0 or higher
@@ -97,6 +99,7 @@ Connection: keep-alive
 ETag: "54999765-264"
 Accept-Ranges: bytes
 ```
+
 
 ## License
 
