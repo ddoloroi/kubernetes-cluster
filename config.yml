@@ -9,6 +9,8 @@ vms:
     cpus: 2
     memory: 1024
     role: master
+    shared:
+      - "containers:/srv/projects"
   slave0:
     box: "simtechdev/centos7-x64"
     ip: 10.0.4.11
