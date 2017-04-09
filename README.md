@@ -1,4 +1,4 @@
-# K8S Cluster
+# K8S cluster
 
 Educational project about building Kubernetes cluster inside of VirtualBox VMs.
 
@@ -13,7 +13,7 @@ Educational project about building Kubernetes cluster inside of VirtualBox VMs.
 
 ## Getting started
 
-Specify amount of CPUs, RAM and role in cluster in `config.yml` file:
+Specify amount of CPUs, RAM and role in cluster in `config.yml`.
 
 ```
 vms:
@@ -51,7 +51,21 @@ provision:
 
 Run `vagrant up` to launch VMs cluster based on VirtualBox.
 
-Done.
+Well done. It works.
+
+## Components
+
+- Master
+  - Kubernetes API Server
+  - Kubernetes Controller Manager
+  - Kubernetes Scheduler
+  - Kubernetes Client (kubectl) 
+  - flanneld
+  - etcd
+- Node(s) 
+  - Kubernetes Node
+  - Kubernetes Proxy
+  - flanneld
 
 ## Run an example service
 
@@ -99,7 +113,6 @@ Connection: keep-alive
 ETag: "54999765-264"
 Accept-Ranges: bytes
 ```
-
 
 ## License
 
