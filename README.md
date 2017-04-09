@@ -9,7 +9,7 @@ Educational project about building Kubernetes Cluster.
 - [Vagrant VBGuest plug-in](https://github.com/dotless-de/vagrant-vbguest) 0.13.0 or higher
 - [Ansible](https://docs.ansible.com/ansible/intro_installation.html#installation) 2.0 or higher
 
-## Getting started 
+## Getting started
 
 Specify amount of CPUs, RAM and role in cluster in `config.yml` file:
 
@@ -53,7 +53,7 @@ Done.
 
 ## Run a test service
 
-Connect to VM and execute the following commands: 
+Connect to VM and execute the following commands:
 
 1. Create a deployment
 
@@ -61,13 +61,12 @@ Connect to VM and execute the following commands:
 kubectl apply -f /containers/nginx-deployment.yml
 ```
 
-2. Expose port to the service
+2. Create service to expose pods port
 
 ```
-kubectl expose deployments/nginx-deployment --type="NodePort" --port 80
+kubectl apply -f /containers/nginx-service.yml
 ```
 
 ## License
 
 MIT
-
