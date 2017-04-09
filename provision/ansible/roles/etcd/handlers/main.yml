@@ -1,0 +1,17 @@
+---
+
+- name: Enabling etcd
+  service: name=etcd enabled=yes
+
+- name: Starting etcd
+  service: name=etcd state=started
+
+- name: Stopping etcd
+  service: name=etcd state=stopped
+
+- name: Restarting etcd
+  service: name=etcd state=restarted
+
+- name: Preseeding etcd data
+  shell: etcdctl mk "{{ flanneld_etcd_prefix }}/config" '{"Network":"{{ flanneld_ip_range }}"}'
+

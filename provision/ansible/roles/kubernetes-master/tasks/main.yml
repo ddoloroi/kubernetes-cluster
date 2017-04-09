@@ -1,37 +1,39 @@
 ---
 
-- name: Installing kubernetes-master
-  yum: name={{ item }} state=installed
+- name: Installing Kubernetes API Server 
+  yum: >
+    name={{ item }}
+    state=installed
   with_items:
     - kubernetes-client
     - kubernetes-master
+  notify:
+    - Enabling Kubernetes API Server
+    - Starting Kubernetes API Server
+    - Enabling Kubernetes Scheduler Server
+    - Starting Kubernetes Scheduler Server
+    - Enabling Kubernetes Controller Manager
+    - Starting Kubernetes Controller Manager
+    - Fixing Kubernetes permissions
 
 - name: Copying /etc/kubernetes/apiserver
-  template: src=templates/etc/kubernetes/apiserver.j2 dest=/etc/kubernetes/apiserver
+  template: >
+    src=templates/etc/kubernetes/apiserver.j2
+    dest=/etc/kubernetes/apiserver
+  notify:
+    - Restarting Kubernetes API Server
+    - Restarting Kubernetes Scheduler Server
+    - Restarting Kubernetes Controller Manager
 
 - name: Starting Kubernetes API Server
   service: name=kube-apiserver state=started
 
-- name: Applying permissions to certificates and private key for API Server
-  file: path={{ item }} owner=kube group=kube
+- name: Fixing Kubernetes permissions
+  file: >
+    path={{ item }}
+    owner=kube
+    group=kube
   with_items:
     - /var/run/kubernetes/apiserver.crt
     - /var/run/kubernetes/apiserver.key
 
-- name: Enabling Kubernetes API Server
-  service: name=kube-apiserver enabled=yes
-
-- name: Restarting Kubernetes API Server (after permissions set)
-  service: name=kube-apiserver state=started
-
-- name: Enabling Kubernetes Scheduler
-  service: name=kube-scheduler enabled=yes
-
-- name: Starting Kubernetes Scheduler Server
-  service: name=kube-scheduler state=started
-
-- name: Enabling Kubernetes Controller Manager
-  service: name=kube-controller-manager enabled=yes
-
-- name: Starting Kubernetes Controller Manager
-  service: name=kube-controller-manager state=started

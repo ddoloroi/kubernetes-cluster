@@ -1,0 +1,45 @@
+---
+
+###############################################################################
+
+- name: Stopping Kubernetes API Server
+  service: name=kube-apiserver state=stopped
+
+- name: Restarting Kubernetes API Server
+  service: name=kube-apiserver state=restarted
+
+- name: Enabling Kubernetes API Server
+  service: name=kube-apiserver enabled=yes
+
+- name: Starting Kubernetes API Server
+  service: name=kube-apiserver state=started
+
+###############################################################################
+
+- name: Starting Kubernetes Scheduler Server
+  service: name=kube-scheduler state=started
+
+- name: Stopping Kubernetes Scheduler Server
+  service: name=kube-scheduler state=stopped
+
+- name: Restarting Kubernetes Scheduler Server
+  service: name=kube-scheduler state=restarted
+
+- name: Enabling Kubernetes Scheduler
+  service: name=kube-scheduler enabled=yes
+
+###############################################################################
+
+- name: Starting Kubernetes Controller Manager
+  service: name=kube-controller-manager state=started
+
+- name: Stopping Kubernetes Controller Manager
+  service: name=kube-controller-manager state=stopped
+
+- name: Restarting Kubernetes Controller Manager
+  service: name=kube-controller-manager state=restarted
+
+- name: Enabling Kubernetes Controller Manager
+  service: name=kube-controller-manager enabled=yes
+
+###############################################################################

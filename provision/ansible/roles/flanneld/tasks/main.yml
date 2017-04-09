@@ -1,17 +1,16 @@
 ---
 
 - name: Installing flanneld
-  yum: name=flannel state=installed
+  yum: >
+    name=flannel
+    state=installed
+  notify:
+    - Starting flanneld
 
 - name: Copying /etc/sysconfig/flanneld
-  template: src=templates/etc/sysconfig/flanneld.j2 dest=/etc/sysconfig/flanneld
-
-- name: Creating etcd configuration
-  shell: etcdctl mk "{{ flanneld_etcd_prefix }}/config" '{"Network":"{{ flanneld_ip_range }}"}'
-  ignore_errors: True
-
-- name: Enabling flanneld
-  service: name=flanneld enabled=yes
-
-- name: Starting flanneld
-  service: name=flanneld state=started
+  template: >
+    src=templates/etc/sysconfig/flanneld.j2
+    dest=/etc/sysconfig/flanneld
+  notify:
+    - Enabling flanneld
+    - Restarting flanneld

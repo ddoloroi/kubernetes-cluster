@@ -1,0 +1,13 @@
+---
+
+- name: Enabling flanneld
+  service: name=flanneld enabled=yes
+
+- name: Starting flanneld
+  service: name=flanneld state=started
+
+- name: Restarting flanneld
+  service: name=flanneld state=restarted
+
+- name: Stopping flanneld
+  service: name=flanneld state=stopped

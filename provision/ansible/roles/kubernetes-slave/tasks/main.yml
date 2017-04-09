@@ -1,25 +1,27 @@
 ---
 
 - name: Installing Kubernetes Node
-  yum: name={{ item }} state=installed
+  yum: >
+    name={{ item }}
+    state=installed
   with_items:
     - kubernetes-node
+  notify:
+    - Enabling Kubernetes Node
+    - Starting Kubernetes Node
+    - Enabling Kubernetes Proxy
+    - Starting Kubernetes Proxy
 
 - name: Copying /etc/kubernetes/kubelet
-  template: src=templates/etc/kubernetes/kubelet.j2 dest=/etc/kubernetes/kubelet
-
-- name: Enabling Kubernetes Node
-  service: name=kubelet enabled=yes
-
-- name: Starting Kubernetes Node
-  service: name=kubelet state=started
+  template: >
+    src=templates/etc/kubernetes/kubelet.j2
+    dest=/etc/kubernetes/kubelet
+  notify:
+    - Restarting Kubernetes Node
 
 - name: Copying /etc/kubernetes/proxy
-  template: src=templates/etc/kubernetes/proxy.j2 dest=/etc/kubernetes/proxy
-
-- name: Enabling Kubernetes Proxy
-  service: name=kube-proxy enabled=yes
-
-- name: Starting Kubernetes Proxy
-  service: name=kube-proxy state=started
-
+  template: >
+    src=templates/etc/kubernetes/proxy.j2
+    dest=/etc/kubernetes/proxy
+  notify:
+    - Restarting Kubernetes Proxy

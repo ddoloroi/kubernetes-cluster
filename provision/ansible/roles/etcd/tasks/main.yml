@@ -1,11 +1,15 @@
 - name: Installing etcd
-  yum: name=etcd state=installed
+  yum: >
+    name=etcd
+    state=installed
+  notify:
+    - Enabling etcd
+    - Starting etcd
+    - Preseeding etcd data
 
 - name: Copying /etc/etcd/etcd.conf
-  template: src=templates/etc/etcd/etcd.conf.j2 dest=/etc/etcd/etcd.conf
-
-- name: Enabling etcd
-  service: name=etcd enabled=yes
-
-- name: Starting etcd
-  service: name=etcd state=started
+  template: >
+    src=templates/etc/etcd/etcd.conf.j2
+    dest=/etc/etcd/etcd.conf
+  notify:
+    - Restarting etcd
