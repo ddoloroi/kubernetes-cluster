@@ -88,7 +88,8 @@ Vagrant.configure(API_VERSION) do |config|
             ansible.tags = provision['ansible']['tags']
           end
           ansible.extra_vars = {
-            kube_hosts: vms
+            kube_hosts: vms,
+            kube_ip_public: vm_conf["ip"]
           }
           ansible.groups = {
             vm_conf['role'] => "#{vm_host}"

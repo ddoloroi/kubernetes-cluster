@@ -8,4 +8,4 @@ FLANNEL_ETCD_ENDPOINTS="http://{{ etcd_server }}:{{ etcd_port }}"
 FLANNEL_ETCD_PREFIX="{{ flanneld_etcd_prefix }}"
     
 # Any additional options that you want to pass
-#FLANNEL_OPTIONS=""
+FLANNEL_OPTIONS=" -iface={{ kube_ip_public|default(ansible_default_ipv4.address) }}"
