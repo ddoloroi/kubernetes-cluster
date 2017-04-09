@@ -13,5 +13,5 @@
   service: name=etcd state=restarted
 
 - name: Preseeding etcd data
-  shell: etcdctl mk "{{ flanneld_etcd_prefix }}/config" '{"Network":"{{ flanneld_ip_range }}"}'
+  command: etcdctl mk "{{ flanneld_etcd_prefix }}/config" '{"Network":"{{ flanneld_ip_range }}"}'
 

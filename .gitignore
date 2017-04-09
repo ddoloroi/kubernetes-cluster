@@ -1,3 +1,4 @@
 .vagrant
 playbook.retry
 .DS_Store
+config.yml

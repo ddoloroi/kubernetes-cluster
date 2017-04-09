@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+ANSIBLE_LINT_SKIP_TESTS="ANSIBLE0002"
+
+###############################################################################
+
+NORMAL=0
+BOLD=1
+UNDERLINE=4
+RED=31
+GREEN=32
+BROWN=33
+BLUE=34
+MAGENTO=35
+CYAN=36
+GREY=37
+
+###############################################################################
+
+show() {
+  echo "$@"
+}
+
+###############################################################################
+
+lint_validate() {
+  playbook="$1"
+  output="$(ansible-lint $playbook -x $ANSIBLE_LINT_SKIP_TESTS)"
+  status=$?
+  if [[ ! $status -eq 0 ]] ; then
+    show "Error: $playbook is corrupted."
+    show
+    show "$output"
+    exit 1
+  else
+    show "Done: $playbook is well formatted."
+  fi
+}
+
+lint_check() {
+  provision_path="$1"
+  pushd "$provision_path" &>/dev/null
+    playbooks=`find . -maxdepth 1 -type f -name '*.yml'`
+    if [[ "$playbooks" == "" ]] ; then
+      show "    Warning: nothing to check" $BROWN
+    else
+      for playbook in $playbooks ; do
+          playbook=`basename $playbook`
+          lint_validate "$playbook"
+      done
+    fi
+  popd &>/dev/null
+}
+
+###############################################################################
+
+syntax_check() {
+  provision_path="$1"
+  extra_vars="$2"
+  inventory="$3"
+  pushd "$provision_path" &>/dev/null
+    playbooks=`find . -maxdepth 1 -type f -name '*.yml'`
+    if [[ "$playbooks" == "" ]] ; then
+      show "    Warning: nothing to check"
+    else
+      for playbook in $playbooks ; do
+          playbook=`basename $playbook`
+          syntax_validate "$playbook" "$extra_vars" "$inventory"
+      done
+    fi
+  popd &>/dev/null
+}
+
+###############################################################################
+
+main() {
+  local provision_path="${1:-provision/ansible}"
+
+  show "Checking the playbooks..."
+  lint_check "$provision_path"
+  show
+
+  show "All tests have been passed."
+}
+
+###############################################################################
+
+main "$@"

@@ -1,6 +1,6 @@
 ---
 
-- name: Installing Kubernetes API Server 
+- name: Installing Kubernetes API Server
   yum: >
     name={{ item }}
     state=installed
