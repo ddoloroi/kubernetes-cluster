@@ -51,20 +51,51 @@ Run `vagrant up` to launch VMs cluster based on VirtualBox.
 
 Done.
 
-## Run a test service
+## Run an example service
 
-Connect to VM and execute the following commands:
+Connect to the master VM and execute the following commands:
 
 1. Create a deployment
 
 ```
-kubectl apply -f /containers/nginx-deployment.yml
+$ kubectl apply -f /containers/nginx-deployment.yml
 ```
 
 2. Create service to expose pods port
 
 ```
-kubectl apply -f /containers/nginx-service.yml
+$ kubectl apply -f /containers/nginx-service.yml
+```
+
+3. Inspect `nginx` service configuration
+
+```
+$ kubectl describe services/nginx
+Name:				nginx
+Namespace:			default
+Labels:				<none>
+Selector:			app=nginx
+Type:				NodePort
+IP:					10.254.245.228
+Port:				<unset>	80/TCP
+NodePort:			<unset>	30001/TCP
+Endpoints:			172.17.103.2:80,172.17.73.2:80,172.17.94.2:80
+Session Affinity:	None
+```
+
+4. Test your application
+
+```
+$ curl -I http://slave0:30001/
+HTTP/1.1 200 OK
+Server: nginx/1.7.9
+Date: Sun, 09 Apr 2017 20:18:37 GMT
+Content-Type: text/html
+Content-Length: 612
+Last-Modified: Tue, 23 Dec 2014 16:25:09 GMT
+Connection: keep-alive
+ETag: "54999765-264"
+Accept-Ranges: bytes
 ```
 
 ## License
