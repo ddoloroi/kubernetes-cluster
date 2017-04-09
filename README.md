@@ -1,6 +1,6 @@
-# Kubernetes Cluster
+# K8S Cluster
 
-Educational project about building Kubernetes Cluster.
+Educational project about building Kubernetes cluster inside of VirtualBox VMs.
 
 ## Requirements
 
@@ -9,7 +9,7 @@ Educational project about building Kubernetes Cluster.
 - [Vagrant VBGuest plug-in](https://github.com/dotless-de/vagrant-vbguest) 0.13.0 or higher
 - [Ansible](https://docs.ansible.com/ansible/intro_installation.html#installation) 2.0 or higher
 
-## Getting started 
+## Getting started
 
 Specify amount of CPUs, RAM and role in cluster in `config.yml` file:
 
