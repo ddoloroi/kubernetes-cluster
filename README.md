@@ -71,15 +71,15 @@ $ kubectl apply -f /containers/nginx-service.yml
 
 ```
 $ kubectl describe services/nginx
-Name:				nginx
-Namespace:			default
-Labels:				<none>
-Selector:			app=nginx
-Type:				NodePort
-IP:					10.254.245.228
-Port:				<unset>	80/TCP
-NodePort:			<unset>	30001/TCP
-Endpoints:			172.17.103.2:80,172.17.73.2:80,172.17.94.2:80
+Name:			nginx
+Namespace:		default
+Labels:			<none>
+Selector:		app=nginx
+Type:			NodePort
+IP:			10.254.245.228
+Port:			<unset>	80/TCP
+NodePort:		<unset>	30001/TCP
+Endpoints:		172.17.103.2:80,172.17.73.2:80,172.17.94.2:80
 Session Affinity:	None
 ```
 
