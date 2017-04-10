@@ -15,6 +15,8 @@ Educational project about building Kubernetes cluster inside of VirtualBox VMs.
 
 Specify amount of CPUs, RAM and role in cluster in `config.yml`.
 
+_Note: If you are going to change hostname of the master node, keep in mind that Ansible parameters are available in [group_vars/all](https://github.com/gongled/kubernetes-cluster/blob/master/provision/ansible/group_vars/all) configuration file._
+
 ```
 vms:
   master0:
